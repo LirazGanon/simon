@@ -60,3 +60,22 @@ footer {
   box-shadow: 0 0 20px white;
   background-color: grey;
 }
+
+@media screen and (max-width: 700px) {
+  .container {
+    width: 90%;
+  }
+  .btn {
+    margin: 5px;
+    height: 120px;
+    width: 120px;
+    border: 5px solid black;
+  }
+
+  #level-title {
+
+    font-size: 1.8rem;
+    margin:  10% 0;
+    color: #FEF2BF;
+  }
+}

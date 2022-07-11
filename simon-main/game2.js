@@ -1,53 +1,66 @@
 const currentGame = []; // An Array that hold the random game numbers
+let width = screen.width;
 
-// wait for user to press any key and than start the function "addNewValue"
-document.addEventListener("keypress", addNewValue, {
-  once: true,
-});
+if (width > 700){
+  document.addEventListener("keypress", addNewValue, {
+    once: true,
+  });
+} else{
+    $("h1").text("Press here to start");
+   document.querySelector("h1").addEventListener("click", addNewValue, {
+    once: true,
+  });
+}
+
+
+
 
 // add new random number to the array, flash the match element and than run function "clientTurnClicks"
 function addNewValue() {
   const randomStartNumber = Math.floor(Math.random() * 4);
   currentGame.push(randomStartNumber);
+  $("h1").text("Level " + currentGame.length);
   fades(randomStartNumber, true);
   clientTurnClicks();
 }
 
 // get cilck value from the user and check if it match to the numbers in the arry "currentGame"
 function clientTurnClicks() {
-  let ClickCounter = 0; //currnt turn counter
+  let ClickCounter = 0;
   $(".btn").on("click", function buttonClickHandler(event) {
-    const clientClickBtn = event.target.id; //get the user's pressed element id
+    const clientClickBtn = event.target.id;
     if (clientClickBtn == currentGame[ClickCounter]) {
-      //if the user's click is correct
       fades(clientClickBtn, false);
-      ClickCounter = ClickCounter + 1; // increase the counter so we can check the next array value
+      ClickCounter = ClickCounter + 1;
       if (ClickCounter >= currentGame.length) {
-        // compare the user's click vs the array length
-        $(".btn").off("click"); // block listen to user clicks
-        showGamePattern(ClickCounter); //**run the "showGamePattern" patten with the value of the current level
-      } // else do nothing => wait for the next user click
+        $(".btn").off("click");
+        setTimeout(function(){
+          showGamePattern(currentGame.length);
+        },200);
+      }
     } else {
-      //if the user click value is wrong end the game
+      const soundGameOver = new Audio("sounds/game-over.mp3");
+      soundGameOver.play();
+      $("body").addClass("game-over");
+      setTimeout (function(){
       alert("Game Over");
       location.reload();
+    },1000);
     }
   });
 }
 
 //run all the the value in the "currentGame" array
-function showGamePattern(ClickCounter) {
-  //use the current level as input
-  if (ClickCounter > 0) {
-    //** as long as the counter grater then 0 run the next value */
+function showGamePattern(loopCounter) {
+  $("h1").text("Level " + (currentGame.length + 1));
+  if (loopCounter > 0) {
     setTimeout(function () {
-      const x = currentGame.length - ClickCounter;
+      const x = currentGame.length - loopCounter;
       fades(currentGame[x], true);
-      showGamePattern(ClickCounter - 1);
-    }, 1000);
+      showGamePattern(loopCounter - 1);
+    }, 900);
   } else {
-    //if the counter is 0 run the function that add new number to the array
-    setTimeout(addNewValue, 1000);
+    setTimeout(addNewValue, 900);
   }
 }
 
@@ -65,5 +78,5 @@ function fades(divId, shouldFade) {
       $("#" + divId).removeClass("pressed");
     }, 120);
   }
- 
+
 }
