@@ -1,0 +1,170 @@
+body {
+    background-color: rgb(48, 48, 48);
+    text-align: center;
+    font-family: 'Open Sans', sans-serif;
+    color: azure;
+}
+
+h1 {
+    margin-top: 50px;
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+.top-container {
+    margin: auto;
+    /* display: table; */
+    border-spacing: 40px;
+}
+
+.info-container {
+    margin: 30px auto;
+
+}
+
+.info {
+    font-size: 1.3rem;
+    color: rgb(219, 227, 227);
+    width: 200px;
+    margin: 0 20px;
+    background-color: #307a6d;
+    border: 1px solid rgb(48, 48, 48);
+    display: inline-block;
+    vertical-align: middle;
+    border-radius: 5px;
+    padding: 10px 0;
+}
+
+.info span {
+    font-size: 1.8rem;
+}
+
+.board {
+    width: 500px;
+    height: 500px;
+    margin: auto;
+}
+
+table {
+    width: 100%;
+    height: 100%;
+    font-family: 'Reem Kufi Fun', sans-serif;
+    table-layout: fixed;
+}
+
+td {
+    background-color: #3D8361;
+    color: white;
+    font-size: 2.5rem;
+    border: 4px solid rgb(48, 48, 48);
+    border-radius: 10px;
+}
+
+td:hover {
+    cursor: pointer;
+    background-color: #1C6758;
+}
+
+
+
+.timer {
+    text-align: center;
+}
+
+.zoom {
+    animation: animatezoom 0.6s
+}
+
+@keyframes animatezoom {
+    from {
+        transform: scale(0)
+    }
+
+    to {
+        transform: scale(1)
+    }
+}
+
+/* difficult selector  */
+.top-button {
+    display: block;
+}
+
+.button {
+    border-radius: 4px;
+    background-color: #1c3b36;
+    border: none;
+    color: rgb(176, 185, 185);
+    text-align: center;
+    font-size: 1.3rem;
+    padding: 15px;
+    width: 150px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+}
+
+.button span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+
+.button span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+}
+
+.button:hover span {
+    padding-right: 25px;
+}
+
+.button:hover span:after {
+    opacity: 1;
+    right: 0;
+}
+
+.highlight {
+    background-color: #9bc4bc;
+    color: rgb(34, 36, 35);
+}
+
+.play-again{
+    background-color: #307a6d;
+    width: 250px;
+    font-size: 2rem;
+    color: rgb(255, 255, 255);
+}
+
+.hide{
+    display: none;
+}
+
+@media screen and (max-width: 600px) {
+    h1{
+        margin: 20px;
+        font-size: 1.7rem;
+    }
+
+    .button{
+        width: 100px
+    }
+
+    .info{
+        font-size: 1.1rem;
+        width: 120px;
+    }
+    
+    .board{
+        width: 97%;
+    }
+    
+    .play-again{
+        width: 250px;
+    }
+}
